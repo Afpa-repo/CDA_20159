@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits{% endblock %}
+
+{% block body %}
+    <h1>Produits</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ produit.id }}</td>
+            </tr>
+            <tr>
+                <th>NomProduit</th>
+                <td>{{ produit.NomProduit }}</td>
+            </tr>
+            <tr>
+                <th>CodeProduit</th>
+                <td>{{ produit.CodeProduit }}</td>
+            </tr>
+            <tr>
+                <th>LibelleProduit</th>
+                <td>{{ produit.LibelleProduit }}</td>
+            </tr>
+            <tr>
+                <th>DescriptionProduit</th>
+                <td>{{ produit.DescriptionProduit }}</td>
+            </tr>
+            <tr>
+                <th>PrixProduit</th>
+                <td>{{ produit.PrixProduit }}</td>
+            </tr>
+            <tr>
+                <th>StockProduit</th>
+                <td>{{ produit.StockProduit }}</td>
+            </tr>
+            <tr>
+                <th>CouleurProduit</th>
+                <td>{{ produit.CouleurProduit }}</td>
+            </tr>
+            <tr>
+                <th>PhotoProduit</th>
+                <td>{{ produit.PhotoProduit }}</td>
+            </tr>
+            <tr>
+                <th>DateAjoutProduit</th>
+                <td>{{ produit.DateAjoutProduit ? produit.DateAjoutProduit|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateModifProduit</th>
+                <td>{{ produit.DateModifProduit ? produit.DateModifProduit|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>StockAlert</th>
+                <td>{{ produit.StockAlert }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('produits_index') }}">back to list</a>
+
+    <a href="{{ path('produits_edit', {'id': produit.id}) }}">edit</a>
+
+    {{ include('produits/_delete_form.html.twig') }}
+{% endblock %}
