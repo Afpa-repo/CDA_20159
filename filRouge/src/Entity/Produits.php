@@ -55,7 +55,7 @@ class Produits
     private $CouleurProduit;
 
     /**
-     * @ORM\Column(type="string", length=5, nullable=true)
+     * @ORM\Column(type="string", length=40, nullable=true)
      */
     private $PhotoProduit;
 
