@@ -25,13 +25,13 @@ class CategorieClients
     private $CatClient;
 
     /**
-     * @ORM\OneToMany(targetEntity=Clients::class, mappedBy="IdCatClient")
+     * @ORM\OneToMany(targetEntity=Clients::class, mappedBy="CatClient")
      */
-    private $CategorieClientsDunClient;
+    private $CategorieClients;
 
     public function __construct()
     {
-        $this->CategorieClientsDunClient = new ArrayCollection();
+        $this->CategorieClients = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -54,27 +54,27 @@ class CategorieClients
     /**
      * @return Collection|Clients[]
      */
-    public function getCategorieClientsDunClient(): Collection
+    public function getCategorieClients(): Collection
     {
-        return $this->CategorieClientsDunClient;
+        return $this->CategorieClients;
     }
 
-    public function addCategorieClientsDunClient(Clients $categorieClientsDunClient): self
+    public function addCategorieClient(Clients $categorieClient): self
     {
-        if (!$this->CategorieClientsDunClient->contains($categorieClientsDunClient)) {
-            $this->CategorieClientsDunClient[] = $categorieClientsDunClient;
-            $categorieClientsDunClient->setIdCatClient($this);
+        if (!$this->CategorieClients->contains($categorieClient)) {
+            $this->CategorieClients[] = $categorieClient;
+            $categorieClient->setCatClient($this);
         }
 
         return $this;
     }
 
-    public function removeCategorieClientsDunClient(Clients $categorieClientsDunClient): self
+    public function removeCategorieClient(Clients $categorieClient): self
     {
-        if ($this->CategorieClientsDunClient->removeElement($categorieClientsDunClient)) {
+        if ($this->CategorieClients->removeElement($categorieClient)) {
             // set the owning side to null (unless already changed)
-            if ($categorieClientsDunClient->getIdCatClient() === $this) {
-                $categorieClientsDunClient->setIdCatClient(null);
+            if ($categorieClient->getCatClient() === $this) {
+                $categorieClient->setCatClient(null);
             }
         }
 

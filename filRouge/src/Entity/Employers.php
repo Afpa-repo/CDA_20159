@@ -35,7 +35,7 @@ class Employers
     private $FonctionEmp;
 
     /**
-     * @ORM\OneToMany(targetEntity=Clients::class, mappedBy="IdEmployer")
+     * @ORM\OneToMany(targetEntity=Clients::class, mappedBy="Employer")
      */
     private $EmployersClients;
 
@@ -97,7 +97,7 @@ class Employers
     {
         if (!$this->EmployersClients->contains($employersClient)) {
             $this->EmployersClients[] = $employersClient;
-            $employersClient->setIdEmployer($this);
+            $employersClient->setEmployer($this);
         }
 
         return $this;
@@ -107,8 +107,8 @@ class Employers
     {
         if ($this->EmployersClients->removeElement($employersClient)) {
             // set the owning side to null (unless already changed)
-            if ($employersClient->getIdEmployer() === $this) {
-                $employersClient->setIdEmployer(null);
+            if ($employersClient->getEmployer() === $this) {
+                $employersClient->setEmployer(null);
             }
         }
 

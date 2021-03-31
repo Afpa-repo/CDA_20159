@@ -2,17 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4adfec3b-c406-4e37-a4ab-5775a9b04b4d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/filRouge.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/filRouge.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/migrations/Version20210318113856.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20210318113856.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210318123830.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210318124107.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20210318124107.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210318131040.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210318131657.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20210319101134.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20210319101134.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/CategorieClients.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/CategorieClients.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Clients.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Clients.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Commande.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Commande.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Employers.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Employers.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Produits.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Produits.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mcdFilRouge.loo" beforeDir="false" afterPath="$PROJECT_DIR$/../mcdFilRouge.loo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ClientsRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ClientsRepository.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -147,6 +156,11 @@
       <option name="presentableId" value="Default" />
       <updated>1616148384143</updated>
       <workItem from="1616148385638" duration="399000" />
+      <workItem from="1617182316075" duration="185000" />
+      <workItem from="1617195884575" duration="220000" />
+      <workItem from="1617202924439" duration="223000" />
+      <workItem from="1617203564644" duration="1132000" />
+      <workItem from="1617204928290" duration="1633000" />
     </task>
     <servers />
   </component>

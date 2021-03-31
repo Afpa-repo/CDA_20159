@@ -54,12 +54,6 @@ class Commande
      */
     private $DetailCommandeDuneCommande;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Clients::class, inversedBy="CommandeClients")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $IdClient;
-
     public function __construct()
     {
         $this->DetailCommandeDuneCommande = new ArrayCollection();
@@ -168,18 +162,6 @@ class Commande
                 $detailCommandeDuneCommande->setIdCommande(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getIdClient(): ?Clients
-    {
-        return $this->IdClient;
-    }
-
-    public function setIdClient(?Clients $IdClient): self
-    {
-        $this->IdClient = $IdClient;
 
         return $this;
     }

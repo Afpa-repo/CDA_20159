@@ -21,13 +21,11 @@ final class Version20210318124107 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE categorie_clients (id INT AUTO_INCREMENT NOT NULL, cat_client VARCHAR(50) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('ALTER TABLE clients CHANGE code_postal code_postal VARCHAR(50) NOT NULL');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('DROP TABLE categorie_clients');
-        $this->addSql('ALTER TABLE clients CHANGE code_postal code_postal VARCHAR(10) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`');
     }
 }
