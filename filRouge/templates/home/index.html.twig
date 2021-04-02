@@ -2,10 +2,10 @@
 {#{% block header %}{% endblock %}#}
 {% block body %}
 
-    {#    {{ dump(CategorieProduits) }}#}
+{#    {{ dump(CategorieProduits) }}#}
     <div class="container" id="pageIndex">
         <div class="col-xl-11 col-lg-11 col-12">
-            <h1 id="BestSeller">Nos Meilleures Ventes</h1>
+        <h1 id="BestSeller">Nos Meilleures Ventes</h1>
         </div>
         <div class="col-12 row">
             <div class="col-8">
@@ -18,15 +18,15 @@
                 </div>
             </div>
             <div id="MeilleuresVentes" class="offset-1 col-3 column">
-{#                #}{#  produit dans les meilleurs vente #}
-{#                {% for produits in produits %}#}
-{#                    <div id="premierProduit">#}
-{#                        <div class="nomProduit text-center"> {{ produits.NomProduit }}</div>#}
-{#                        #}{#  {{ produits.PhotoProduit }} #}
-{#                        <div class="text-center"><img class="img-fluid" src="{{ asset('asset/image/TOP VENTES saxo.png') }}" title="produitUn" alt="produitUn"></div>#}
-{#                        <div class="prixHT">{{ produits.PrixProduit }} € H.T.</div>#}
-{#                    </div>#}
-{#                {% endfor %}#}
+                {#  produit dans les meilleurs vente #}
+                {% for produits in produits %}
+                <div id="premierProduit">
+                    <div class="nomProduit text-center"> {{ produits.NomProduit }}</div>
+                    {#  {{ produits.PhotoProduit }} #}
+                    <div class="text-center"><img class="img-fluid" src="{{ asset('asset/image/TOP VENTES saxo.png') }}" title="produitUn" alt="produitUn"></div>
+                    <div class="prixHT">{{ produits.PrixProduit }} € H.T.</div>
+                </div>
+                {% endfor %}
             </div>
         </div>
 

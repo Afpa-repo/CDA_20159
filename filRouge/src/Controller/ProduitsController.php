@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Fournisseurs;
 use App\Entity\Produits;
 use App\Form\ProduitsType;
+use App\Repository\CategorieProduitsRepository;
 use App\Repository\FournisseursRepository;
 use App\Repository\ProduitsRepository;
 use App\Repository\SousCatRepository;
@@ -12,7 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\CategorieProduitsRepository;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**

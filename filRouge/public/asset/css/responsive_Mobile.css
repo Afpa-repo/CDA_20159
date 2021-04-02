@@ -1,0 +1,29 @@
+@media screen and (max-width: 575px)
+{
+    .titreColonne
+    {
+        font-size: 13px;
+    }
+
+    .textFooter, .intitule
+    {
+        font-size: 6px;
+    }
+
+    .numero
+    {
+        font-size: 10px;
+    }
+
+    #partenaire
+    {
+        font-size: 15px;
+        margin-top: 15%;
+    }
+
+
+    #BestSeller
+    {
+        font-size: 12px;
+    }
+}
