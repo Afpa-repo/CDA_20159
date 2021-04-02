@@ -1,55 +1,60 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Produits index{% endblock %}
 
 {% block body %}
-    <h1>Produits index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>NomProduit</th>
-                <th>CodeProduit</th>
-                <th>LibelleProduit</th>
-                <th>DescriptionProduit</th>
-                <th>PrixProduit</th>
-                <th>StockProduit</th>
-                <th>CouleurProduit</th>
-                <th>PhotoProduit</th>
-                <th>DateAjoutProduit</th>
-                <th>DateModifProduit</th>
-                <th>StockAlert</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for produit in produits %}
-            <tr>
-                <td>{{ produit.id }}</td>
-                <td>{{ produit.NomProduit }}</td>
-                <td>{{ produit.CodeProduit }}</td>
-                <td>{{ produit.LibelleProduit }}</td>
-                <td>{{ produit.DescriptionProduit }}</td>
-                <td>{{ produit.PrixProduit }}</td>
-                <td>{{ produit.StockProduit }}</td>
-                <td>{{ produit.CouleurProduit }}</td>
-                <td>{{ produit.PhotoProduit }}</td>
-                <td>{{ produit.DateAjoutProduit ? produit.DateAjoutProduit|date('Y-m-d') : '' }}</td>
-                <td>{{ produit.DateModifProduit ? produit.DateModifProduit|date('Y-m-d') : '' }}</td>
-                <td>{{ produit.StockAlert }}</td>
-                <td>
-                    <a href="{{ path('produits_show', {'id': produit.id}) }}">show</a>
-                    <a href="{{ path('produits_edit', {'id': produit.id}) }}">edit</a>
-                </td>
-            </tr>
+{#  Affichage des produits#}
+    <div class="container">
+        <h1 class="mb-5 text-white"><u>Produits index</u></h1>
+        <div class="row">
+
+{#            {{ dump(CategorieProduits) }}#}
+{#                        {{ dump(SousCategories) }}#}
+{#            {{ dump(SousCategorie) }}#}
+{#            {{ dump(produits) }}#}
+
+
+            {% for produit in SousCategories%}
+
+            <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12 my-5 bg-secondary border rounded">
+
+                <img src= '/asset/image/{{ produit.PhotoProduit }}'  class="pb-5 img-fluid" />
+                <p><b>Nom du produit :</b> {{ produit.NomProduit }}</p>
+                <p><b>Couleur du produit :</b> {{ produit.CouleurProduit }}</p>
+                <p><b>Libelle du produit :</b>  {{ produit.LibelleProduit }}</p>
+                <p><b>Produit disponile :</b> {{ produit.StockProduit }}</p>
+                <p><b>Prix :</b>  <span class="text-warning">{{ produit.PrixProduit }} </span>€</p>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-4">
+                            <a href="{{ path('produits_show', {'id': produit.id}) }}" type="button" class="btn btn-primary mb-2">Détails</a>
+
+                        </div>
+                        <div class="col-4">
+                            <a href="" class="pb-2"><img src= '/asset/image/picto panier.png' class="pb-5 img-fluid" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{#            Div espace entre produit#}
+            <div class="col-1 col-sm-0"></div>
+
         {% else %}
             <tr>
                 <td colspan="13">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+{#                navigation des pages#}
 
-    <a href="{{ path('produits_new') }}">Create new</a>
+            <div class="pagination" >
+                {{ knp_pagination_render(SousCategories) }}
+            </div>
+        </div>
+
+
+    </div>
+
 {% endblock %}

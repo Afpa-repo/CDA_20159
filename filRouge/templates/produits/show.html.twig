@@ -3,64 +3,52 @@
 {% block title %}Produits{% endblock %}
 
 {% block body %}
-    <h1>Produits</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ produit.id }}</td>
-            </tr>
-            <tr>
-                <th>NomProduit</th>
-                <td>{{ produit.NomProduit }}</td>
-            </tr>
-            <tr>
-                <th>CodeProduit</th>
-                <td>{{ produit.CodeProduit }}</td>
-            </tr>
-            <tr>
-                <th>LibelleProduit</th>
-                <td>{{ produit.LibelleProduit }}</td>
-            </tr>
-            <tr>
-                <th>DescriptionProduit</th>
-                <td>{{ produit.DescriptionProduit }}</td>
-            </tr>
-            <tr>
-                <th>PrixProduit</th>
-                <td>{{ produit.PrixProduit }}</td>
-            </tr>
-            <tr>
-                <th>StockProduit</th>
-                <td>{{ produit.StockProduit }}</td>
-            </tr>
-            <tr>
-                <th>CouleurProduit</th>
-                <td>{{ produit.CouleurProduit }}</td>
-            </tr>
-            <tr>
-                <th>PhotoProduit</th>
-                <td>{{ produit.PhotoProduit }}</td>
-            </tr>
-            <tr>
-                <th>DateAjoutProduit</th>
-                <td>{{ produit.DateAjoutProduit ? produit.DateAjoutProduit|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>DateModifProduit</th>
-                <td>{{ produit.DateModifProduit ? produit.DateModifProduit|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>StockAlert</th>
-                <td>{{ produit.StockAlert }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('produits_index') }}">back to list</a>
+    <div class="container  bg-secondary text-white">
+        <h1 class="mb-5 text-white"><u>Détails du produit</u></h1>
 
-    <a href="{{ path('produits_edit', {'id': produit.id}) }}">edit</a>
+        <div class="row">
+{#            Colonne de gauche         #}
 
-    {{ include('produits/_delete_form.html.twig') }}
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <img src= '/asset/image/{{ produit.PhotoProduit }}'  class="pb-5 img-fluid" alt="{{ produit.PhotoProduit }}"/>
+                <p><b>Nom du produit : </b>{{ produit.NomProduit }}</p>
+                <p><b>Nom du Fournisseur : </b>{{ produit.IdFournisseur.NomSociete }}</p>
+                <p><b>Code du produit : </b>{{ produit.CodeProduit }}</p>
+                <p><b>Libellé du produit : </b>{{ produit.LibelleProduit }}</p>
+                <p><b>Produit disponible : </b>{{ produit.StockProduit }}</p>
+                <p><b>Couleur du produit : </b>{{ produit.CouleurProduit }}</p>
+                <p><b>Produit disponile à l'achat depuis le : </b>{{ produit.DateAjoutProduit ? produit.DateAjoutProduit|date('d/m/Y') : '' }}</p>
+
+
+
+            </div>
+{#            Colonne de droite          #}
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <p class="display-4 pt-3"> Prix :  <span class="text-warning">{{ produit.PrixProduit }} €</span></p>
+                <hr>
+                <p><u>Description du produit :</u></p>
+                {{ produit.DescriptionProduit }}
+            </div>
+        </div>
+    </div>
+
+
+{#container boutons#}
+    <div class="container  bg-secondary text-white py-5">
+        <hr>
+        <div class="row">
+{#                        {{ dump(CategorieProduits) }}#}
+{#            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12">#}
+{#                <a href="{{ path('produits_index', {'id': SousCatCategorieProduits.id}) }}">{{ SousCatCategorieProduits.NomSousCat }} type="button" class="btn btn-primary">Liste produits</a>#}
+{#            </div>#}
+
+            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12">
+                <a href="" class="pb-2"><img src= '/asset/image/picto panier.png' class="pt-1 img-fluid" alt="panier" /></a>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}

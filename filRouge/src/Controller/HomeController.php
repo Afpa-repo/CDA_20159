@@ -13,19 +13,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/")
- * @method render(string $string, array $array)
- */
+* @Route("/")
+* @method render(string $string, array $array)
+*/
 class HomeController extends AbstractController
 {
-//    public $cat;
-//    public function __construct(CategorieProduitsRepository $categorieProduits)
-//    {
-//        $cat = $categorieProduits->findAll();
-//    }
-    /**
-     * @Route("/", name="home")
-     */
+
+/**
+* @Route("/", name="home")
+*/
     public function index(CategorieProduitsRepository $CategorieProduits, ProduitsRepository $produitsRepository) :Response
     {
         return $this->render('home/index.html.twig', [

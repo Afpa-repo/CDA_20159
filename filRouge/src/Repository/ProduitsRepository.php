@@ -35,15 +35,16 @@ class ProduitsRepository extends ServiceEntityRepository
         ;
     }
 
-    /*
-    public function findOneBySomeField($value): ?Produits
+// fonction pour récupérer les produits par sous catégories
+    public function findBySousCat($value)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
+        return $this->createQueryBuilder('SousCatParId')
+            ->andWhere('SousCatParId.IdSousCat = :val')
             ->setParameter('val', $value)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getResult()
+            ;
     }
-    */
+
+
 }

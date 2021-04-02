@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}profile{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card shadow-lg p-3 mt-5 mb-5 bg-white rounded-lg">
+                    <div class="card-title bg-primary rounded-lg"><h4 class="text-center">Mes informations</h4></div>
+                    <div class="card-body">
+                        {{ form_start(form) }}
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
