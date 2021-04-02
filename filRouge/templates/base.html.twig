@@ -35,7 +35,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 {# Pour chaque sous catégorie dans catégorie.SousCatCategorieProduits on affiche le nom des sous catégorie  #}
                             {% for SousCatCategorieProduits in CategorieProduits.SousCatCategorieProduits %}
-                                <a class="dropdown-item" href="#">{{ SousCatCategorieProduits.NomSousCat }}</a>
+                                <a class="dropdown-item" href="{{ path('produits_index', {'id': SousCatCategorieProduits.id}) }}">{{ SousCatCategorieProduits.NomSousCat }}</a>
                             {% endfor %}
                         </div>
                     </li>
