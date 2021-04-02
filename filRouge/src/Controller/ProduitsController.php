@@ -2,13 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\Fournisseurs;
 use App\Entity\Produits;
 use App\Form\ProduitsType;
+use App\Repository\FournisseursRepository;
 use App\Repository\ProduitsRepository;
+use App\Repository\SousCatRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\CategorieProduitsRepository;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/produits")
@@ -16,12 +21,26 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProduitsController extends AbstractController
 {
     /**
-     * @Route("/", name="produits_index", methods={"GET"})
+     * @Route("/{id}", name="produits_index", methods={"GET"})
      */
-    public function index(ProduitsRepository $produitsRepository): Response
+    //Liste des paramètres
+    public function index(CategorieProduitsRepository $CategorieProduits ,$id, ProduitsRepository $produitsRepository , PaginatorInterface $paginator , Request $request): Response
     {
+//        affiche les produits par l'id de sous catégorie
+
+        $produit = $produitsRepository->findBySousCat($id); //récupère les produits par sous catégories
+
+//récupère les produits pour créer les pages
+        $produit = $paginator->paginate(
+            $produit, /* query NOT result */
+            $request->query->getInt('page', 1), /*numéro de page par defaut*/
+            6 /*limite d'article par page*/
+        );
+//rendu
         return $this->render('produits/index.html.twig', [
-            'produits' => $produitsRepository->findAll(),
+
+            'SousCategories' => $produit,
+            'CategorieProduits' => $CategorieProduits->findAll()
         ]);
     }
 
@@ -49,12 +68,19 @@ class ProduitsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="produits_show", methods={"GET"})
+     * @Route("/show/{id}", name="produits_show", methods={"GET"})
      */
-    public function show(Produits $produit): Response
+    public function show(CategorieProduitsRepository $CategorieProduits ,$id, Produits $produit): Response
     {
+
+// variable FournisseursName récupère l'ID du fournisseur qui récupère elle même et le nom de la société
+        $FournisseurName = $produit ->getIdFournisseur($id);
+        dump($FournisseurName);
+        dump($produit);
         return $this->render('produits/show.html.twig', [
+            //Rend produit sur la vue "Show"
             'produit' => $produit,
+            'CategorieProduits' => $CategorieProduits->findAll()
         ]);
     }
 

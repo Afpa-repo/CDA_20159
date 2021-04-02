@@ -2,24 +2,35 @@
 
 
 namespace App\Controller;
-
+use App\Entity\SousCat;
+use App\Entity\CategorieProduits;
+use App\Repository\CategorieProduitsRepository;
+use App\Repository\ProduitsRepository;
+use App\Repository\SousCatRepository;
+use Doctrine\ORM\Mapping\OrderBy;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/")
- * @method render(string $string, array $array)
- */
+* @Route("/")
+* @method render(string $string, array $array)
+*/
 class HomeController extends AbstractController
 {
-    /**
-     * @Route("/", name="home")
-     */
-    public function index() :Response
+
+/**
+* @Route("/", name="home")
+*/
+    public function index(CategorieProduitsRepository $CategorieProduits, ProduitsRepository $produitsRepository) :Response
     {
-        // affichage de la page d'accueil
-        return $this->render('home/index.html.twig');
+        return $this->render('home/index.html.twig', [
+            'CategorieProduits' => $CategorieProduits->findAll(),
+
+
+
+        ]);
+
     }
 
 }
