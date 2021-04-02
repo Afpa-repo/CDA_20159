@@ -1,0 +1,101 @@
+/*fond de page*/
+body
+{
+    background-image: url("../image/background village.png");
+}
+/* Couleur de la navbar */
+.navbar-custom
+{
+    background-color: #111F35;
+}
+/*couleur des liens de catégorie */
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+/*placement des liens de categorie dans la navbar*/
+li
+{
+    margin-right: 0%;
+}
+/* placement du lien espace client dans la navbar */
+.espaceClient
+{
+    margin-right: 2%;
+}
+/* couleur des liens */
+a
+{
+    color: white;
+}
+/*taille du logoGreen de base */
+#logoGreen
+{
+    height: 58.72px;
+    margin: -23% 0% -20% -17%;
+}
+/*responsive logoGreen*/
+.img-fluid
+{
+    max-height: 100%;
+    height: auto;
+}
+#footer
+{
+    background-color: #1d1d1d;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+/* les titres dans le footer */
+.titreColonne
+{
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+/* intitulé en gras dans le footer */
+.intitule
+{
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+/*Numero de telephone footer*/
+.numero
+{
+    color: white;
+ font-weight: bolder;
+ font-size: 18px;
+}
+/* le reste du texte du footer */
+.textFooter
+{
+    color: white;
+    font-size: 10px;
+}
+/*menu déroulant*/
+.dropdown-menu {
+    background-color: #111F35;
+}
+/* liste du menu déroulant*/
+.dropdown-item {
+    background-color: #111F35;
+    color: white;
+}
+/* espacement des div dans le footer*/
+.espaceligne {
+    margin-bottom: 3%;
+}
+/* bande noir de fin de footer */
+#Finfooter {
+    background-color: black;
+    height: 50px;
+    width: 100%;
+}
+/* texte tout en bas du footer */
+.basFooter {
+    position: relative;
+    text-align: center;
+    margin-top: 2%;
+    color: white;
+    font-size: 12px;
+}
