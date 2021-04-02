@@ -3,14 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\ClientsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=ClientsRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-class Clients
+class Clients implements UserInterface
 {
     /**
      * @ORM\Id
@@ -20,9 +21,20 @@ class Clients
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $MdpClient;
+    private $email;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private $password;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
@@ -30,37 +42,37 @@ class Clients
     private $MatriculeSociete;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $NomSociete;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $Nom;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $Prenom;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $Adresse;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=10, nullable=true)
      */
     private $CodePostal;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $Ville;
 
     /**
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $Pays;
 
@@ -75,52 +87,109 @@ class Clients
     private $NumFax;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $DateInscription;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="float", nullable=true)
      */
     private $Tva;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="IdClient")
+     * @ORM\Column(type="boolean", options={"default"= "0"})
      */
-    private $CommandeClients;
+    private $VerifInfos;
 
     /**
      * @ORM\ManyToOne(targetEntity=Employers::class, inversedBy="EmployersClients")
-     * @ORM\JoinColumn(nullable=false)
      */
-    private $IdEmployer;
+    private $Employer;
 
     /**
-     * @ORM\ManyToOne(targetEntity=CategorieClients::class, inversedBy="CategorieClientsDunClient")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=CategorieClients::class, inversedBy="CategorieClients")
      */
-    private $IdCatClient;
-
-    public function __construct()
-    {
-        $this->CommandeClients = new ArrayCollection();
-    }
+    private $CatClient;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getMdpClient(): ?string
+    public function getEmail(): ?string
     {
-        return $this->MdpClient;
+        return $this->email;
     }
 
-    public function setMdpClient(string $MdpClient): self
+    public function setEmail(string $email): self
     {
-        $this->MdpClient = $MdpClient;
+        $this->email = $email;
 
         return $this;
+    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
+    {
+        return (string) $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
     public function getMatriculeSociete(): ?string
@@ -140,7 +209,7 @@ class Clients
         return $this->NomSociete;
     }
 
-    public function setNomSociete(string $NomSociete): self
+    public function setNomSociete(?string $NomSociete): self
     {
         $this->NomSociete = $NomSociete;
 
@@ -152,7 +221,7 @@ class Clients
         return $this->Nom;
     }
 
-    public function setNom(string $Nom): self
+    public function setNom(?string $Nom): self
     {
         $this->Nom = $Nom;
 
@@ -164,7 +233,7 @@ class Clients
         return $this->Prenom;
     }
 
-    public function setPrenom(string $Prenom): self
+    public function setPrenom(?string $Prenom): self
     {
         $this->Prenom = $Prenom;
 
@@ -176,7 +245,7 @@ class Clients
         return $this->Adresse;
     }
 
-    public function setAdresse(string $Adresse): self
+    public function setAdresse(?string $Adresse): self
     {
         $this->Adresse = $Adresse;
 
@@ -188,7 +257,7 @@ class Clients
         return $this->CodePostal;
     }
 
-    public function setCodePostal(string $CodePostal): self
+    public function setCodePostal(?string $CodePostal): self
     {
         $this->CodePostal = $CodePostal;
 
@@ -200,7 +269,7 @@ class Clients
         return $this->Ville;
     }
 
-    public function setVille(string $Ville): self
+    public function setVille(?string $Ville): self
     {
         $this->Ville = $Ville;
 
@@ -212,7 +281,7 @@ class Clients
         return $this->Pays;
     }
 
-    public function setPays(string $Pays): self
+    public function setPays(?string $Pays): self
     {
         $this->Pays = $Pays;
 
@@ -248,76 +317,59 @@ class Clients
         return $this->DateInscription;
     }
 
-    public function setDateInscription(\DateTimeInterface $DateInscription): self
+    public function setDateInscription(?\DateTimeInterface $DateInscription): self
     {
         $this->DateInscription = $DateInscription;
 
         return $this;
     }
 
-    public function getTva(): ?string
+    public function getTva(): ?float
     {
         return $this->Tva;
     }
 
-    public function setTva(string $Tva): self
+    public function setTva(?float $Tva): self
     {
         $this->Tva = $Tva;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Commande[]
-     */
-    public function getCommandeClients(): Collection
+    public function getVerifInfos(): ?bool
     {
-        return $this->CommandeClients;
+        return $this->VerifInfos;
     }
 
-    public function addCommandeClient(Commande $commandeClient): self
+    public function setVerifInfos(bool $VerifInfos): self
     {
-        if (!$this->CommandeClients->contains($commandeClient)) {
-            $this->CommandeClients[] = $commandeClient;
-            $commandeClient->setIdClient($this);
-        }
+        $this->VerifInfos = $VerifInfos;
 
         return $this;
     }
 
-    public function removeCommandeClient(Commande $commandeClient): self
+    public function getEmployer(): ?Employers
     {
-        if ($this->CommandeClients->removeElement($commandeClient)) {
-            // set the owning side to null (unless already changed)
-            if ($commandeClient->getIdClient() === $this) {
-                $commandeClient->setIdClient(null);
-            }
-        }
+        return $this->Employer;
+    }
+
+    public function setEmployer(?Employers $Employer): self
+    {
+        $this->Employer = $Employer;
 
         return $this;
     }
 
-    public function getIdEmployer(): ?Employers
+    public function getCatClient(): ?CategorieClients
     {
-        return $this->IdEmployer;
+        return $this->CatClient;
     }
 
-    public function setIdEmployer(?Employers $IdEmployer): self
+    public function setCatClient(?CategorieClients $CatClient): self
     {
-        $this->IdEmployer = $IdEmployer;
+        $this->CatClient = $CatClient;
 
         return $this;
     }
 
-    public function getIdCatClient(): ?CategorieClients
-    {
-        return $this->IdCatClient;
-    }
-
-    public function setIdCatClient(?CategorieClients $IdCatClient): self
-    {
-        $this->IdCatClient = $IdCatClient;
-
-        return $this;
-    }
 }
