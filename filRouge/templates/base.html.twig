@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="{{ asset('asset/css/Index.css') }}">
     <link rel="stylesheet" media="screen and (max-width: 768px)" href="{{ asset('asset/css/responsive_tablette.css') }}">
     <link rel="stylesheet" media="screen and (max-width: 575px)" href="{{ asset('asset/css/responsive_Mobile.css') }}">
-
     <link rel="stylesheet" href="{{ asset('asset/css/BaseCSS.css') }}">
     {% endblock %}
 </head>
@@ -42,6 +41,23 @@
                     </li>
 
                 {% endfor %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        {% if app.user %}
+                            <a href="{{ path('app_logout') }}" class="btn btn-outline-secondary">Se déconnecter</a>
+                        {% else %}
+                            <a href="{{ path('app_register') }}" class="btn btn-outline-secondary"><span class="glyphicon glyphicon-user">S'inscrire</span></a>
+                            <a href="{{ path('app_login') }}" class="btn btn-outline-secondary">
+                        <span class="glyphicon glyphicon-user">Se connecter
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+                            <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                            </svg>
+                        </span>
+                            </a>
+                        {% endif %}
+                    </li>
                 </ul>
 {# Lien Espace client et panier #}
                     <a class="espaceClient" href="">Espace Client</a>
@@ -137,36 +153,12 @@
 </div>
 <div class="container" id="Finfooter">
 </div>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ path('produits_index') }}">Produits</a>
-            </li>
-        </ul>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            {% if app.user %}
-                <a href="{{ path('app_logout') }}" class="btn btn-outline-secondary">Se déconnecter</a>
-            {% else %}
-                <a href="{{ path('app_register') }}" class="btn btn-outline-secondary"><span class="glyphicon glyphicon-user">S'inscrire</span></a>
-                <a href="{{ path('app_login') }}" class="btn btn-outline-secondary">
-                        <span class="glyphicon glyphicon-user">Se connecter
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                            <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                            </svg>
-                        </span>
-                </a>
-            {% endif %}
-        </li>
-    </ul>
-</nav>
-{% block body %}{% endblock %}
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-{% block javascripts %}{% endblock %}
-</body>
+
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
 </html>
