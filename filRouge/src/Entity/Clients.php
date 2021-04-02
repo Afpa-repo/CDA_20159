@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use App\Repository\ClientsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=ClientsRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class Clients implements UserInterface
 {
@@ -95,7 +97,7 @@ class Clients implements UserInterface
     private $Tva;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default"= "0"})
      */
     private $VerifInfos;
 
@@ -369,4 +371,5 @@ class Clients implements UserInterface
 
         return $this;
     }
+
 }
