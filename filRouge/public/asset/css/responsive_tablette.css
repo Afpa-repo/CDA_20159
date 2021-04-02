@@ -1,0 +1,14 @@
+@media screen and (max-width: 768px) and (min-width: 576px)
+{
+    #partenaire
+    {
+        font-size: 18px;
+        margin-top: 15%;
+    }
+
+
+    #BestSeller
+    {
+        font-size: 15px;
+    }
+}

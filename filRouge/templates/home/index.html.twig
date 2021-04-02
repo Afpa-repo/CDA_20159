@@ -1,11 +1,37 @@
 {% extends 'base.html.twig' %}
+{#{% block header %}{% endblock %}#}
 {% block body %}
-    <div class="container">
-        <div class="row mt-5">
-            <div class="col-sm-8 offset-sm-2">
-                <h1>Accueil</h1>
-                <p>Hello World !!!</p>
+
+{#    {{ dump(CategorieProduits) }}#}
+    <div class="container" id="pageIndex">
+        <div class="col-xl-11 col-lg-11 col-12">
+        <h1 id="BestSeller">Nos Meilleures Ventes</h1>
+        </div>
+        <div class="col-12 row">
+            <div class="col-8">
+                <div>
+                    <img class="img-fluid" id="imageIndex" src="{{ asset('asset/image/pub guitare.png') }}" title="pubGuitare" alt="pubGuitare">
+                </div>
+                <div class="offset-2">
+                    <div id="partenaire">Nos partenaires !</div>
+                    <img class="img-fluid" id="imagePartenaire" src="{{ asset('asset/image/partenaires 4 logos.png') }}" title="partenaireLogo" alt="partenaireLogo">
+                </div>
             </div>
+            <div id="MeilleuresVentes" class="offset-1 col-3 column">
+                {#  produit dans les meilleurs vente #}
+                {% for produits in produits %}
+                <div id="premierProduit">
+                    <div class="nomProduit text-center"> {{ produits.NomProduit }}</div>
+                    {#  {{ produits.PhotoProduit }} #}
+                    <div class="text-center"><img class="img-fluid" src="{{ asset('asset/image/TOP VENTES saxo.png') }}" title="produitUn" alt="produitUn"></div>
+                    <div class="prixHT">{{ produits.PrixProduit }} € H.T.</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row">
+            <img id="picto" class="img-fluid" src="{{ asset('asset/image/banniere centre 4 pictos.png') }}" title="service" alt="imgService">
         </div>
     </div>
 {% endblock %}

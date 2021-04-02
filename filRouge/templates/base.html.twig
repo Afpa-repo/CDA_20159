@@ -1,32 +1,140 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% block stylesheets %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    {#<link rel="stylesheet" href="{{ asset('css/style.css') }}">#}
-    {% block stylesheets %}{% endblock %}
+    <link rel="stylesheet" href="{{ asset('asset/css/BaseCSS.css') }}">
+    <link rel="stylesheet" href="{{ asset('asset/css/Index.css') }}">
+    <link rel="stylesheet" media="screen and (max-width: 768px)" href="{{ asset('asset/css/responsive_tablette.css') }}">
+    <link rel="stylesheet" media="screen and (max-width: 575px)" href="{{ asset('asset/css/responsive_Mobile.css') }}">
+    {% endblock %}
 </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{{ path('home') }}">Accueil</a>
+
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+            <a class="navbar-brand" href="{{ path('home') }}"><img id="logoGreen" class="img-responsive" src="{{ asset('asset/image/logo village green.png') }}" title="logo" alt="logoGreen"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+{#            {{ dump(CategorieProduits) }}#}
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('produits_index') }}">Produits</a>
+{# Pour chaque catégorie de produit on créer un lien  //// tester render + controller base #}
+                    {% for CategorieProduits in CategorieProduits %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ CategorieProduits.NomCatProduit }}
+
+                        </a>
+{# Menu déroulant #}
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+{# Pour chaque sous catégorie dans catégorie.SousCatCategorieProduits on affiche le nom des sous catégorie  #}
+                            {% for SousCatCategorieProduits in CategorieProduits.SousCatCategorieProduits %}
+                                <a class="dropdown-item" href="#">{{ SousCatCategorieProduits.NomSousCat }}</a>
+                            {% endfor %}
+                        </div>
                     </li>
+
+                {% endfor %}
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+{# Lien Espace client et panier #}
+                    <a class="espaceClient" href="">Espace Client</a>
+                    <a href="">Panier</a>
             </div>
         </nav>
         {% block body %}{% endblock %}
+<div id="footer" class="container">
+
+    <div class="row">
+{# Premiere colonne footer #}
+        <div class="col-3">
+           <div class="titreColonne"> Contactez-nous !</div>
+            <div class="textFooter espaceligne"><span class="intitule">Conseil / Commande téléphone<br></span>
+            du lundi au vendredi de 8h à 19h, le samedi de 10h à 18h.
+            </div>
+            <div class="textFooter espaceligne">
+                Depuis la france : <br>
+                <span class="numero">02 40 38 50 50</span>
+            </div>
+            <div class="textFooter espaceligne">
+                Belgique, Suisse, International : <br>
+                <span class="numero">0033 2 40 38 50 50</span>
+            </div>
+            <div class="textFooter espaceligne">
+                <span class="intitule">Service après vente :<br></span>
+                <span class="numero">02 52 80 68 76<br></span>
+                Contactez-nous par téléphone du lundi au samedi de 9h à 18h ou depuis votre compte client.
+            </div>
+            <div class="textFooter espaceligne">
+                <span class="intitule">Conseils pour choisir un instrument :<br></span>
+                emailbidon@gmail.com
+            </div>
+            <div class="textFooter espaceligne">
+            <span class="intitule">Service Presse :<br></span>
+            emailbidon2@gmail.com
+            </div>
+
+            <div class="intitule espaceligne">Village Green Recrute !
+            </div>
+        </div>
+        {# deuxieme colonne footer #}
+        <div class="col-3 row">
+            <div class="titreColonne espaceligne">Village Green Stores </div>
+            <div class="textFooter espaceligne">Ouverts de 10h à 19h30 non-stop.</div>
+            <span class="textFooter espaceligne">Guitares - Amplificateurs - Effets :<br>
+            182 avenue Jean jaurès<br>
+            75019 Paris</span>
+            <div class="textFooter espaceligne">Clavier - Home Studio - Sonorisation - Equipement DJ - Eclairage :<br>
+            184 avenue Jean Jaurès<br>
+            75019 Paris</div>
+            <div class="textFooter espaceligne">Librairie Musicale :<br>
+            7 av. du Nouveau Conservatoire<br>
+            75019 Paris</div>
+            <div class="textFooter espaceligne">Intrusment à vent :<br>
+            9/11 av. du Nouveau Conservatoire<br>
+            75019 Paris</div>
+            <div class="textFooter espaceligne">Percussions :<br>
+            13/15 av. du Nouveau Conservatoire<br>
+            75019 Paris<br>
+            <span class="textFooter espaceligne">Métro Ligne 5, station Porte de Pantin</span></div>
+        </div>
+
+
+        {# troiseme colonne footer #}
+        <div class="col-3">
+            <div class="titreColonne espaceligne">Utiles !</div>
+            <div class="textFooter">
+                Qui sommes nous ?<br><br>
+                F.A.Q. <br><br>
+                Le blog Village Green<br><br>
+                Vous avez un site Internet? <br>
+                Devenez partenaire Village Green<br><br>
+                Conditions générales de vente<br><br>
+                Mentions Légales<br><br>
+                Plan du Site<br><br>
+                Nouveautés<br><br>
+            </div>
+        </div>
+        {# quatrieme colonne footer #}
+        <div class="col-3">
+            <div class="titreColonne">Village Green Preservation Society</div>
+            <div class="textFooter">
+                Toute l'actualité musicale<br><br>
+                Voir l'avis des musiciens<br><br>
+                Concours : inscription et résultat... A vous de jouer !
+            </div>
+        </div>
+    </div>
+    <div class="basFooter">Village Green est une entreprise 100% Made in France !<br>
+    Magasin de musique - Achat / Vente instruments de musique - Atelier de réparation - Vente accessoires de musique au meilleur prix<br>
+    1989-2020 - RCS Paris B 222 333 444 Déclaration CNIL : 12345678</div>
+</div>
+<div class="container" id="Finfooter">
+</div>
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
