@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Employers;
 use App\Form\InfosClientsType;
+use App\Repository\CategorieProduitsRepository;
 use App\Repository\EmployersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +16,7 @@ class ProfileController extends AbstractController
     /**
      * @Route("/profile", name="app_profile")
      */
-    public function index(): Response
+    public function index(CategorieProduitsRepository $CategorieProduits): Response
     {
         if (!$this->getUser()->getVerifInfos()){
             return $this->redirectToRoute('app_infos');
@@ -23,13 +24,15 @@ class ProfileController extends AbstractController
         //$this->getUser()->getEmployer()->getPrenomEmp();
         //$user = $this->getUser();
 
-        return $this->render('profile/index.html.twig');
+        return $this->render('profile/index.html.twig',[
+            'CategorieProduits' => $CategorieProduits->findAll(),
+        ]);
     }
 
     /**
      * @Route("/profile/infos", name="app_infos")
      */
-    public function infos(Request $request, EmployersRepository $emp):Response
+    public function infos(CategorieProduitsRepository $CategorieProduits ,Request $request ,EmployersRepository $emp):Response
     {
         //Variable utilisateur courant
         $user = $this->getUser();
@@ -54,6 +57,7 @@ class ProfileController extends AbstractController
             return $this->render('profile/infos.html.twig', [
                 'user' => $user,
                 'form' => $form->createView(),
+                'CategorieProduits' => $CategorieProduits->findAll(),
             ]);
         }else{
             return $this->redirectToRoute('app_profile');
