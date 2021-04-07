@@ -46,4 +46,52 @@
 
 
 
+#pageIndex {
+    background-color: white;
+}
+
+#BestSeller {
+    text-align: end;
+    font-size:  20px;
+}
+.nomProduit
+{
+    color: rgba(198, 77, 39, 1);
+}
+.prixHT {
+    text-align: end;
+    color: rgba(198, 77, 39, 1);
+
+}
+/*la div d'affichage des meilleurs vente*/
+#MeilleuresVentes
+{
+    background-color: #111F35;
+}
+
+#imagePartenaire
+{
+    margin-top: 2%;
+}
+
+#partenaire {
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+#picto
+{
+    margin-top: 1%;
+}
+#premierProduit
+{
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+
+
+
+
 
