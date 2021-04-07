@@ -99,3 +99,10 @@ a
     color: white;
     font-size: 12px;
 }
+
+/* disposition de l'affichage de la quantité totale de produit dans le panier */
+.navbarProductQuantity {
+    position: relative;
+    bottom: 18px;
+    left: 20px;
+}

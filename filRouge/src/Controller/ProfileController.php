@@ -6,6 +6,7 @@ use App\Entity\Employers;
 use App\Form\InfosClientsType;
 use App\Repository\CategorieProduitsRepository;
 use App\Repository\EmployersRepository;
+use App\Service\Cart\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +17,7 @@ class ProfileController extends AbstractController
     /**
      * @Route("/profile", name="app_profile")
      */
-    public function index(CategorieProduitsRepository $CategorieProduits): Response
+    public function index(CategorieProduitsRepository $CategorieProduits, CartService $cartService): Response
     {
         if (!$this->getUser()->getVerifInfos()){
             return $this->redirectToRoute('app_infos');
@@ -26,13 +27,15 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/index.html.twig',[
             'CategorieProduits' => $CategorieProduits->findAll(),
+            // appel de la fonction getTotalQuantity() pour le calcul du nombre total de produit dans le panier
+            'total_quantity' => $cartService->getTotalQuantity()
         ]);
     }
 
     /**
      * @Route("/profile/infos", name="app_infos")
      */
-    public function infos(CategorieProduitsRepository $CategorieProduits ,Request $request ,EmployersRepository $emp):Response
+    public function infos(CategorieProduitsRepository $CategorieProduits, CartService $cartService, Request $request ,EmployersRepository $emp):Response
     {
         //Variable utilisateur courant
         $user = $this->getUser();
@@ -58,6 +61,8 @@ class ProfileController extends AbstractController
                 'user' => $user,
                 'form' => $form->createView(),
                 'CategorieProduits' => $CategorieProduits->findAll(),
+                // appel de la fonction getTotalQuantity() pour le calcul du nombre total de produit dans le panier
+                'total_quantity' => $cartService->getTotalQuantity()
             ]);
         }else{
             return $this->redirectToRoute('app_profile');

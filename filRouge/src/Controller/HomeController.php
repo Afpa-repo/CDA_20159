@@ -7,6 +7,7 @@ use App\Entity\CategorieProduits;
 use App\Repository\CategorieProduitsRepository;
 use App\Repository\ProduitsRepository;
 use App\Repository\SousCatRepository;
+use App\Service\Cart\CartService;
 use Doctrine\ORM\Mapping\OrderBy;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,13 +23,13 @@ class HomeController extends AbstractController
 /**
 * @Route("/", name="home")
 */
-    public function index(CategorieProduitsRepository $CategorieProduits, ProduitsRepository $produitsRepository) :Response
+    public function index(CategorieProduitsRepository $CategorieProduits, CartService $cartService, ProduitsRepository $produitsRepository) :Response
     {
         return $this->render('home/index.html.twig', [
             'CategorieProduits' => $CategorieProduits->findAll(),
-            'produits' => $produitsRepository->findAllDESC()
-
-
+            'produits' => $produitsRepository->findAllDESC(),
+            // appel de la fonction getTotalQuantity() pour le calcul du nombre total de produit dans le panier
+            'total_quantity' => $cartService->getTotalQuantity()
         ]);
 
     }

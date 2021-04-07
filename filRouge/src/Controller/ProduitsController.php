@@ -9,6 +9,7 @@ use App\Repository\CategorieProduitsRepository;
 use App\Repository\FournisseursRepository;
 use App\Repository\ProduitsRepository;
 use App\Repository\SousCatRepository;
+use App\Service\Cart\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +25,7 @@ class ProduitsController extends AbstractController
      * @Route("/{id}", name="produits_index", methods={"GET"})
      */
     //Liste des paramètres
-    public function index(CategorieProduitsRepository $CategorieProduits ,$id, ProduitsRepository $produitsRepository , PaginatorInterface $paginator , Request $request): Response
+    public function index(CategorieProduitsRepository $CategorieProduits ,$id, ProduitsRepository $produitsRepository, PaginatorInterface $paginator, CartService $cartService, Request $request): Response
     {
 //        affiche les produits par l'id de sous catégorie
 
@@ -40,7 +41,9 @@ class ProduitsController extends AbstractController
         return $this->render('produits/index.html.twig', [
 
             'SousCategories' => $produit,
-            'CategorieProduits' => $CategorieProduits->findAll()
+            'CategorieProduits' => $CategorieProduits->findAll(),
+            // appel de la fonction getTotalQuantity() pour le calcul du nombre total de produit dans le panier
+            'total_quantity' => $cartService->getTotalQuantity()
         ]);
     }
 
@@ -70,7 +73,7 @@ class ProduitsController extends AbstractController
     /**
      * @Route("/show/{id}", name="produits_show", methods={"GET"})
      */
-    public function show(CategorieProduitsRepository $CategorieProduits ,$id, Produits $produit): Response
+    public function show(CategorieProduitsRepository $CategorieProduits, CartService $cartService, $id, Produits $produit): Response
     {
 
 // variable FournisseursName récupère l'ID du fournisseur qui récupère elle même et le nom de la société
@@ -80,7 +83,9 @@ class ProduitsController extends AbstractController
         return $this->render('produits/show.html.twig', [
             //Rend produit sur la vue "Show"
             'produit' => $produit,
-            'CategorieProduits' => $CategorieProduits->findAll()
+            'CategorieProduits' => $CategorieProduits->findAll(),
+            // appel de la fonction getTotalQuantity() pour le calcul du nombre total de produit dans le panier
+            'total_quantity' => $cartService->getTotalQuantity()
         ]);
     }
 
