@@ -7,8 +7,8 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
-    <h1 class="text-white">Register</h1>
 <div class="container bg-white pb-2" id="register">
+    <h1 class="h3 mb-3 font-weight-normal">Register</h1>
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
