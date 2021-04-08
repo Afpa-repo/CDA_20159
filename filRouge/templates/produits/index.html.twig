@@ -20,80 +20,84 @@
 
             <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12 my-5 bg-secondary border rounded">
 
-                <img src= '/asset/image/produits/{{ produit.PhotoProduit }}'  class="pb-5 img-fluid pt-2" />
-
-                {# affichage des images (avec accès aux détails en cliquant sur l'image) #}
-                {#<a href="{{ path('produits_show', {'id': produit.id}) }}" class="imageHover">
-                    <img src= '/asset/image/produits/{{ produit.PhotoProduit }}'  class="pb-5 img-fluid pt-2">
-                    #}{# texte à afficher #}{#
-                    <div class="hovered text-center">
-                        <span>Cliquez pour accéder aux détails</span>
+                {#<img src= '/asset/image/produits/{{ produit.PhotoProduit }}'  class="pb-5 img-fluid pt-2" />#}
+                <div class="row">
+                    <div class="col-12 widthImagesDiv">
+                        {# affichage des images (avec accès aux détails en cliquant sur l'image) #}
+                        <a href="{{ path('produits_show', {'id': produit.id}) }}" class="imageHover">
+                            <img src= '/asset/image/produits/{{ produit.PhotoProduit }}'  class="scaled pb-5 img-fluid pt-2">
+                            {# texte à afficher #}
+                            <div class="hovered text-center">
+                                <span>Cliquez pour accéder aux détails</span>
+                            </div>
+                        </a>
                     </div>
-                </a>#}
+                    <div class="col-12">
+                        <p><b>Nom du produit :</b> {{ produit.NomProduit }}</p>
+                        <p><b>Couleur du produit :</b> {{ produit.CouleurProduit }}</p>
+                        <p><b>Libelle du produit :</b>  {{ produit.LibelleProduit }}</p>
+                        <p><b>Produit disponile :</b> {{ produit.StockProduit }}</p>
+                        <p><b>Prix :</b>  <span class="text-warning">{{ produit.PrixProduit }} </span>€</p>
 
-                <p><b>Nom du produit :</b> {{ produit.NomProduit }}</p>
-                <p><b>Couleur du produit :</b> {{ produit.CouleurProduit }}</p>
-                <p><b>Libelle du produit :</b>  {{ produit.LibelleProduit }}</p>
-                <p><b>Produit disponile :</b> {{ produit.StockProduit }}</p>
-                <p><b>Prix :</b>  <span class="text-warning">{{ produit.PrixProduit }} </span>€</p>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-4">
+                                    <a href="{{ path('produits_show', {'id': produit.id}) }}" type="button" class="btn btn-primary mb-2">Détails</a>
 
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-4">
-                            <a href="{{ path('produits_show', {'id': produit.id}) }}" type="button" class="btn btn-primary mb-2">Détails</a>
+                                </div>
+                                <div class="col-4">
+                                    {# bouton d'ajout de produits dans le panier avec un modal de confirmation #}
+                                    <a href="{{ path('json_cart_add', {'id': produit.id}) }}" class="pb-2 js-cart-add"
+                                       title="ajouter ce produit au panier" data-toggle="modal" data-target="#productAddConfirmation{{ produit.id }}">
+                                        <img src= '/asset/image/picto panier.png' class="pb-5 img-fluid" alt="panier">
+                                    </a>
 
-                        </div>
-                        <div class="col-4">
-                            {# bouton d'ajout de produits dans le panier avec un modal de confirmation #}
-                            <a href="{{ path('json_cart_add', {'id': produit.id}) }}" class="pb-2 js-cart-add"
-                               title="ajouter ce produit au panier" data-toggle="modal" data-target="#productAddConfirmation{{ produit.id }}">
-                                <img src= '/asset/image/picto panier.png' class="pb-5 img-fluid" alt="panier">
-                            </a>
-
-                            {# modal de confirmation d'ajout de produit et de choix de redirection vers panier ou liste des produits #}
-                            <div class="modal fade" id="productAddConfirmation{{ produit.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                {# début de la zone de dialogue #}
-                                <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-                                    <div class="modal-content border-warning">
-                                        {# titre de suppression dans l'entête du modal #}
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-success" id="myModalLabel">
-                                                {# message de confirmation #}
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">
-                                                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                                    <path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>
-                                                </svg>
-                                                Ajouté au panier
-                                            </h5>
-                                            {# bouton de fermeture du modal #}
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        {# message de confirmation dans le corps du modal #}
-                                        <div class="modal-body">
-                                            <div class="row mt-2">
-                                                <div class="col-sm-6 p-0 pl-3">
-                                                    {# image du produit #}
-                                                    {#{{ path('products_show', {'id': product.id}) }}#}
-                                                    <img class="card-img img-fluid rounded w-100" src="/asset/image/produits/{{ produit.PhotoProduit }}"
-                                                         alt="{{ produit.NomProduit }}" title="{{ produit.NomProduit }}">
+                                    {# modal de confirmation d'ajout de produit et de choix de redirection vers panier ou liste des produits #}
+                                    <div class="modal fade" id="productAddConfirmation{{ produit.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        {# début de la zone de dialogue #}
+                                        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                                            <div class="modal-content border-warning">
+                                                {# titre de suppression dans l'entête du modal #}
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-success" id="myModalLabel">
+                                                        {# message de confirmation #}
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">
+                                                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                                            <path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z"/>
+                                                        </svg>
+                                                        Ajouté au panier
+                                                    </h5>
+                                                    {# bouton de fermeture du modal #}
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
                                                 </div>
-                                                <div class="col-sm-6 p-0 pl-2 pr-3">
-                                                    {# titre du produit #}
-                                                    <div class="font-weight-bold">{{ produit.NomProduit }}</div>
-                                                    <div class="text-danger">{{ produit.PrixProduit }} €</div>
-                                                </div>
-                                            </div>
-                                            {# boutons de redirection #}
-                                            <div class="row mt-4 text-center">
-                                                <div class="col-12">
-                                                    <button type="button" class="btn w-100 btn-outline-primary mb-2" data-dismiss="modal">Continuer mes achats</button>
-                                                </div>
-                                                <div class="col-12">
-                                                    <a href="{{ path('cart_index') }}" class="btn w-100 btn-success"
-                                                       title="voir panier">Voir mon panier
-                                                    </a>
+                                                {# message de confirmation dans le corps du modal #}
+                                                <div class="modal-body">
+                                                    <div class="row mt-2">
+                                                        <div class="col-sm-6 p-0 pl-3">
+                                                            {# image du produit #}
+                                                            {#{{ path('products_show', {'id': product.id}) }}#}
+                                                            <img class="card-img img-fluid rounded w-100" src="/asset/image/produits/{{ produit.PhotoProduit }}"
+                                                                 alt="{{ produit.NomProduit }}" title="{{ produit.NomProduit }}">
+                                                        </div>
+                                                        <div class="col-sm-6 p-0 pl-2 pr-3">
+                                                            {# titre du produit #}
+                                                            <div class="font-weight-bold">{{ produit.NomProduit }}</div>
+                                                            <div class="text-danger">{{ produit.PrixProduit }} €</div>
+                                                        </div>
+                                                    </div>
+                                                    {# boutons de redirection #}
+                                                    <div class="row mt-4 text-center">
+                                                        <div class="col-12">
+                                                            <button type="button" class="btn w-100 btn-outline-primary mb-2" data-dismiss="modal">Continuer mes achats</button>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <a href="{{ path('cart_index') }}" class="btn w-100 btn-success"
+                                                               title="voir panier">Voir mon panier
+                                                            </a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

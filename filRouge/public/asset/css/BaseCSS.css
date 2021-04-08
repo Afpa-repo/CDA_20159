@@ -103,6 +103,6 @@ a
 /* disposition de l'affichage de la quantité totale de produit dans le panier */
 .navbarProductQuantity {
     position: relative;
-    bottom: 18px;
-    left: 20px;
+    bottom: 20px;
+    left: 35px;
 }

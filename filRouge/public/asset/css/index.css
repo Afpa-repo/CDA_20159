@@ -90,8 +90,8 @@
     margin-bottom: 10%;
 }
 
-/* hover on products pictures */
-/*.hovered {
+/* hover sur l'image des produits contenant un lien vers la page des détails */
+.hovered {
     position: absolute;
     top: 0; bottom: 0; left: 0; right: 0;
     height: 100%; width: 100%;
@@ -114,10 +114,23 @@
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-}*/
-/* end */
+}
+/* fin */
 
+/* taille fixe pour les images des produits */
+.widthImagesDiv {
+    width : 250px;
+    height: 250px;
+    text-align: center;
+}
 
+img.scaled {
+    max-width : 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+/* fin */
 
 
 
