@@ -4,8 +4,8 @@ namespace App\Form;
 
 use App\Entity\Clients;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class InfosClientsType extends AbstractType
@@ -23,7 +23,7 @@ class InfosClientsType extends AbstractType
             ->add('Pays')
             ->add('NumTel')
             ->add('NumFax')
-            ->add('valider', SubmitType::class)
+            ->add('CatClient')
         ;
     }
 

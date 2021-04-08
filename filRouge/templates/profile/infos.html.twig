@@ -7,10 +7,53 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <div class="card shadow-lg p-3 mt-5 mb-5 bg-white rounded-lg">
-                    <div class="card-title bg-primary rounded-lg"><h4 class="text-center">Mes informations</h4></div>
+                    <div class="card-title bg-secondary rounded-lg"><h4 class="text-center text-white">Mes informations</h4></div>
                     <div class="card-body">
                         {{ form_start(form) }}
-
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_row(form.Nom) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(form.Prenom) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_row(form.Pays) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(form.Adresse) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{ form_row(form.CodePostal) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_row(form.Ville) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_row(form.CatClient) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_row(form.NomSociete) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(form.MatriculeSociete) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_row(form.NumTel) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(form.NumFax) }}
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary btn-block">Valider</button>
                         {{ form_end(form) }}
                     </div>
                 </div>

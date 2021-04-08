@@ -34,6 +34,11 @@ class CategorieClients
         $this->CategorieClients = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->CatClient;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

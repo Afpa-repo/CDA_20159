@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Employers;
 use App\Form\InfosClientsType;
+use App\Repository\CategorieClientsRepository;
 use App\Repository\CategorieProduitsRepository;
 use App\Repository\EmployersRepository;
 use App\Service\Cart\CartService;
@@ -22,8 +23,6 @@ class ProfileController extends AbstractController
         if (!$this->getUser()->getVerifInfos()){
             return $this->redirectToRoute('app_infos');
         }
-        //$this->getUser()->getEmployer()->getPrenomEmp();
-        //$user = $this->getUser();
 
         return $this->render('profile/index.html.twig',[
             'CategorieProduits' => $CategorieProduits->findAll(),
@@ -35,7 +34,7 @@ class ProfileController extends AbstractController
     /**
      * @Route("/profile/infos", name="app_infos")
      */
-    public function infos(CategorieProduitsRepository $CategorieProduits, CartService $cartService, Request $request ,EmployersRepository $emp):Response
+    public function infos(CategorieProduitsRepository $CategorieProduits ,Request $request ,CartService $cartService,EmployersRepository $employer, CategorieClientsRepository $catClient):Response
     {
         //Variable utilisateur courant
         $user = $this->getUser();
@@ -46,11 +45,15 @@ class ProfileController extends AbstractController
 
             //check if the form is valid is sent
             if ($form->isSubmitted() && $form->isValid()) {
-                //$employers = new Employers();
-                $id = $emp->find(1);
+                if ($form->get('CatClient')->getViewData() === "1"){
+                    dd($form->get('CatClient')->getViewData());
+                    $user->setEmployer($employer->find(1));
+                    $user->setTva(19.6);
+                }else{
+                    $user->setEmployer($employer->find(2));
+                    $user->setTva(5.5);
+                }
                 //$user->setVerifInfos(true);
-                //$user->setNom('Alexandre');
-                $user->setEmployer($id);
 
 
                 $em = $this->getDoctrine()->getManager();
