@@ -46,13 +46,12 @@
                         <div class="col-4">
                             {# bouton d'ajout de produits dans le panier avec un modal de confirmation #}
                             <a href="{{ path('json_cart_add', {'id': produit.id}) }}" class="pb-2 js-cart-add"
-                               title="ajouter ce produit au panier" data-toggle="modal" data-target="#productAddConfirmation{{produit.id}}">
-                                <img src= '/asset/image/picto panier.png' class="pb-5 img-fluid" />
+                               title="ajouter ce produit au panier" data-toggle="modal" data-target="#productAddConfirmation{{ produit.id }}">
+                                <img src= '/asset/image/picto panier.png' class="pb-5 img-fluid" alt="panier">
                             </a>
 
-
                             {# modal de confirmation d'ajout de produit et de choix de redirection vers panier ou liste des produits #}
-                            <div class="modal fade" id="productAddConfirmation{{produit.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="productAddConfirmation{{ produit.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 {# début de la zone de dialogue #}
                                 <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
                                     <div class="modal-content border-warning">

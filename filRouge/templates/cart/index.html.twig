@@ -124,7 +124,7 @@
                         <div class="col-12">
                             <div class="col-lg-6 offset-lg-3 text-center mt-3">
                                 {# bouton d'ajout de produits dans le panier avec un modal de confirmation #}
-                                <button type="button" class="btn-sm btn-success rounded w-75" title="Passer la commande">Passer la commande</button>
+                                <a href="" class="btn btn-sm btn-success rounded w-75" title="Passer la commande">Passer la commande</a>
                             </div>
                         </div>
                     </div>
@@ -138,9 +138,9 @@
                         </div>
                         <div class="col-sm-6 offset-3 text-center">
                             {# bouton d'accès au compte perso #}
-                            <button type="button" class="btn-sm w-100 btn-warning rounded mb-2" title="Se Connecter">Connectez-vous à votre compte</button>
+                            <a href="{{ path('app_login') }}" class="btn btn-sm w-100 btn-warning rounded mb-2" title="Se connecter">Connectez-vous à votre compte</a>
                             {# bouton d'inscription #}
-                            <button type="button" class="btn-sm w-100 btn-light rounded" title="S'inscrire">Inscrivez-vous maintenant</button>
+                            <a href="{{ path('app_register') }}" class="btn btn-sm w-100 btn-light rounded" title="S'inscrire">Inscrivez-vous maintenant</a>
                         </div>
                     </div>
                 {% endif%}
