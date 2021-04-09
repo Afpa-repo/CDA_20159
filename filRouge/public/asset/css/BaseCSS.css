@@ -2,6 +2,9 @@
 body
 {
     background-image: url("../image/background village.png");
+    background-repeat: no-repeat; /*ne repete pas l'image*/
+    background-size: cover; /*Couvre la totalité de l'ecran */
+    background-attachment: fixed; /*Fixe le fond d'écran*/
 }
 /* Couleur de la navbar */
 .navbar-custom

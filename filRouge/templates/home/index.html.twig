@@ -22,8 +22,7 @@
                 {% for produits in produits %}
                 <div id="premierProduit">
                     <div class="nomProduit text-center"> {{ produits.NomProduit }}</div>
-                    {#  {{ produits.PhotoProduit }} #}
-                    <div class="text-center"><img class="img-fluid" src="{{ asset('asset/image/TOP VENTES saxo.png') }}" title="produitUn" alt="produitUn"></div>
+                    <div class="text-center"><img class="img-fluid"  src= '/asset/image/produits/{{ produits.PhotoProduit }}' title="produitUn" alt="produitUn"></div>
                     <div class="prixHT">{{ produits.PrixProduit }} € H.T.</div>
                 </div>
                 {% endfor %}
