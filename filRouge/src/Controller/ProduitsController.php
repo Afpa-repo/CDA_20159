@@ -22,22 +22,21 @@ use Knp\Component\Pager\PaginatorInterface;
 class ProduitsController extends AbstractController
 {
     /**
+     * Liste des paramètres
      * @Route("/{id}", name="produits_index", methods={"GET"})
      */
-    //Liste des paramètres
-    public function index(CategorieProduitsRepository $CategorieProduits ,$id, ProduitsRepository $produitsRepository, PaginatorInterface $paginator, CartService $cartService, Request $request): Response
+    public function index(CategorieProduitsRepository $CategorieProduits, $id, ProduitsRepository $produitsRepository, PaginatorInterface $paginator, CartService $cartService, Request $request): Response
     {
-//        affiche les produits par l'id de sous catégorie
-
+        // affiche les produits par l'id de sous catégorie
         $produit = $produitsRepository->findBySousCat($id); //récupère les produits par sous catégories
 
-//récupère les produits pour créer les pages
+        // récupère les produits pour créer les pages
         $produit = $paginator->paginate(
-            $produit, /* query NOT result */
-            $request->query->getInt('page', 1), /*numéro de page par defaut*/
-            6 /*limite d'article par page*/
+            $produit, // query NOT result
+            $request->query->getInt('page', 1), // numéro de page par defaut
+            6 // limite d'article par page
         );
-//rendu
+        // rendu
         return $this->render('produits/index.html.twig', [
 
             'SousCategories' => $produit,
@@ -76,7 +75,7 @@ class ProduitsController extends AbstractController
     public function show(CategorieProduitsRepository $CategorieProduits, CartService $cartService, $id, Produits $produit): Response
     {
 
-// variable FournisseursName récupère l'ID du fournisseur qui récupère elle même et le nom de la société
+        // variable FournisseursName récupère l'ID du fournisseur qui récupère elle même et le nom de la société
         $FournisseurName = $produit ->getIdFournisseur($id);
         dump($FournisseurName);
         dump($produit);
